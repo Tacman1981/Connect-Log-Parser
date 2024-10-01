@@ -1,0 +1,40 @@
+﻿<Window x:Class="PeakOnline.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Peak Online Players" Height="600" Width="500" ResizeMode="NoResize">
+    
+    <Grid>
+        <StackPanel Margin="10">
+            <!-- File selection and display -->
+            <Button Content="Select File" Click="BtnSelectFile_Click" HorizontalAlignment="Center" Margin="0 10"/>
+            <TextBox x:Name="TxtFilePath" TextWrapping="Wrap" IsReadOnly="True" Margin="0 10"/>
+            <ListBox x:Name="LstFilePaths" SelectionChanged="LstFilePaths_SelectionChanged" Margin="0 10"/>
+
+            <!-- Color customization -->
+            <StackPanel Orientation="Horizontal" Margin="0 10">
+                <Label Content="Background Color:" VerticalAlignment="Center"/>
+                <ComboBox x:Name="CmbBackgroundColor" SelectionChanged="CmbBackgroundColor_SelectionChanged" Margin="5">
+                    <!-- Define more colors -->
+                    <ComboBoxItem Content="DarkGreen"/>
+                    <ComboBoxItem Content="LightBlue"/>
+                    <ComboBoxItem Content="White"/>
+                    <ComboBoxItem Content="LightGray"/>
+                    <ComboBoxItem Content="Salmon"/>
+                    <ComboBoxItem Content="LightCoral"/>
+                    <ComboBoxItem Content="MediumSeaGreen"/>
+                    <ComboBoxItem Content="DodgerBlue"/>
+                    <ComboBoxItem Content="Gold"/>
+                    <ComboBoxItem Content="Purple"/>
+                    <ComboBoxItem Content="DarkOrange"/>
+                    <ComboBoxItem Content="Tomato"/>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Reset history button -->
+            <Button Content="Reset Data History" Click="BtnResetHistory_Click" HorizontalAlignment="Center" Margin="0 10"/>
+            <!-- Simple Graph using Canvas -->
+            <Canvas x:Name="GraphCanvas" Height="250" Margin="0 20" Background="LightGray"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
