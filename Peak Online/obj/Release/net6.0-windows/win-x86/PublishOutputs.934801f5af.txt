@@ -1,7 +1,0 @@
-E:\peak with ui\PeakOnline.pdb
-E:\peak with ui\D3DCompiler_47_cor3.dll
-E:\peak with ui\PenImc_cor3.dll
-E:\peak with ui\PresentationNative_cor3.dll
-E:\peak with ui\vcruntime140_cor3.dll
-E:\peak with ui\wpfgfx_cor3.dll
-E:\peak with ui\PeakOnline.exe

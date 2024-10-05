@@ -1,5 +1,0 @@
-E:\peak with ui\PeakOnline.exe
-E:\peak with ui\PeakOnline.dll
-E:\peak with ui\PeakOnline.deps.json
-E:\peak with ui\PeakOnline.runtimeconfig.json
-E:\peak with ui\PeakOnline.pdb
