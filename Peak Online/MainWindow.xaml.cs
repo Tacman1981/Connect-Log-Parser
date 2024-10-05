@@ -14,7 +14,7 @@ namespace PeakOnline
 {
     public partial class MainWindow : Window
     {
-        private const int MaxHistorySize = 10; // Edit here to adjust maximum paths to be stored.
+        private const int MaxHistorySize = 10; // Maximum number of paths to store in history
         private const string LastUsedDirectoryKey = "LastUsedDirectory";
         private const string FileHistoryKey = "FileHistory";
         private const string BackgroundColorKey = "BackgroundColor";
@@ -113,7 +113,6 @@ namespace PeakOnline
                     Text = dailyPeak.PeakPlayers.ToString(),
                     Foreground = Brushes.Black,
                     FontWeight = FontWeights.Bold,
-                    FontSize = 10, // Base font size for peak players
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
 
@@ -121,46 +120,32 @@ namespace PeakOnline
                 Canvas.SetLeft(peakText, i * xStep + (xStep - barWidth) / 2);
                 Canvas.SetBottom(peakText, barHeight + 5); // Add some padding above the bar
 
-                // Format the date string as left-to-right
+                // Create a string for the date
                 string dateString = dailyPeak.Date.ToString("dd/MM");
 
-                // Create a text block for the date
+                // Create a text block for the date, placed centrally inside the bar
                 TextBlock dateText = new TextBlock
                 {
                     Text = dateString,
                     Foreground = Brushes.Red,
                     FontWeight = FontWeights.Bold,
-                    TextAlignment = TextAlignment.Left, // Align text to the left
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Center
+                    TextAlignment = TextAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 12 // Set to a smaller font size
                 };
 
-                // Dynamically adjust the font size based on the width of the bar
-                double maxFontSize = 12; // Define the maximum font size
-                double minFontSize = 8; // Define the minimum font size
-                double availableWidth = barWidth - 20; // Adjust for padding
-                double calculatedFontSize = Math.Min(availableWidth / dateString.Length * 1.5, maxFontSize);
-                calculatedFontSize = Math.Max(calculatedFontSize, minFontSize); // Ensure it doesn't go below min
+                // Rotate the date text
+                dateText.RenderTransformOrigin = new Point(0.5, 0.5); // Set origin to center
 
-                dateText.FontSize = calculatedFontSize;
-
-                // Position the date text inside the bar, aligned to the left
-                Canvas.SetLeft(dateText, i * xStep + (xStep - barWidth) / 2 + 5); // Adjust position for padding
-                Canvas.SetBottom(dateText, barHeight / 2 - calculatedFontSize / 2); // Center vertically
+                // Center the date text inside the bar
+                Canvas.SetLeft(dateText, i * xStep + (xStep - barWidth) / 2 + barWidth / 2 - 20); // Adjust as needed
+                Canvas.SetBottom(dateText, barHeight / 2 - 20); // Adjust position slightly to center vertically
 
                 // Add the bar and text to the canvas
                 GraphCanvas.Children.Add(bar);
                 GraphCanvas.Children.Add(peakText);
                 GraphCanvas.Children.Add(dateText);
-            }
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                // Allow the window to be dragged
-                this.DragMove();
             }
         }
 
@@ -259,10 +244,6 @@ namespace PeakOnline
                 LstFilePaths.Items.Add(filePath);
             }
         }
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close(); // Closes the application
-        }
 
         private void LstFilePaths_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -270,6 +251,20 @@ namespace PeakOnline
             {
                 LoadLogData(selectedFile);
             }
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Allow dragging the window
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

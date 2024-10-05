@@ -6,6 +6,21 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>peak.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="peak.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="peak.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="peak.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 
 </Project>
